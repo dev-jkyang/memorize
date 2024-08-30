@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:memolize/config/colors.dart';
+import 'package:memorize/config/colors.dart';
+
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
