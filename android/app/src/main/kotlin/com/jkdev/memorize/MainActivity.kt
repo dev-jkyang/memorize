@@ -1,4 +1,4 @@
-package com.example.memolize
+package com.jkdev.memorize
 
 import io.flutter.embedding.android.FlutterActivity
 
