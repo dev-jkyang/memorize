@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xff282442);
-const bgWhite = Color(0xffCCCCCC);
-const positiveButton = Color(0xff4875CD);
+const bgWhiteColor = Color(0xffCCCCCC);
+const positiveButtonColor = Color(0xff4875CD);
+const greyTextColor = Color(0xff747474);
+const pupleColor = Color(0xff6E66C6);
+
 const todayGradient = LinearGradient(
   colors: [
     Color(0xFF6E66C6),

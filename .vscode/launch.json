@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "memolize",
+            "name": "memorize",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "memolize (profile mode)",
+            "name": "memorize (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "memolize (release mode)",
+            "name": "memorize (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

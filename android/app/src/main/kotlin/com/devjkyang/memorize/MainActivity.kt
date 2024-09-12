@@ -1,4 +1,4 @@
-package com.jkdev.memorize
+package com.devjkyang.memorize
 
 import io.flutter.embedding.android.FlutterActivity
 

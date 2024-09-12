@@ -1,6 +1,6 @@
 {
-    "name": "memolize",
-    "short_name": "memolize",
+    "name": "memorize",
+    "short_name": "memorize",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
