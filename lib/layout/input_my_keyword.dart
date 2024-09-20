@@ -7,8 +7,11 @@ import 'package:go_router/go_router.dart';
 import 'package:memorize/config/custom_colors.dart';
 import 'package:memorize/custom_dialog/input_title_dialog.dart';
 import 'package:memorize/model/card_data_model.dart';
-import 'package:memorize/provider/card_list_provider.dart';
+import 'package:memorize/provider/group_card_list_provider.dart';
 import 'package:memorize/provider/group_list_provider.dart';
+import 'package:memorize/provider/simple_provider/card_list_provider.dart';
+import 'package:memorize/provider/simple_provider/current_group_id_provider.dart';
+import 'package:memorize/widgets/web_view_widget.dart';
 
 class InputMyKeyword extends ConsumerStatefulWidget {
   const InputMyKeyword({super.key});
@@ -27,6 +30,14 @@ class _InputMyKeywordState extends ConsumerState<InputMyKeyword> {
   final _keywordScrollController = ScrollController();
   final _messege1ScrollController = ScrollController();
   final _messege2ScrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _keywordController.text = '많은 사람들이 동시에 특정 장소를 떠나는 상황이나, 증시에서 투자금이 한꺼번에 빠져나가는 경우에 사용되는 표현이다. ';
+    _message1Controller.text = '엑소더스';
+    _message2Controller.text = '헤게모니';
+  }
 
   @override
   void dispose() {
@@ -66,11 +77,32 @@ class _InputMyKeywordState extends ConsumerState<InputMyKeyword> {
         centerTitle: true,
         actions: [
           GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              'assets/images/csv3d.png',
-              width: 40,
-              height: 40,
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (c) {
+                  return const KeywordWebViewWidget();
+                },
+              );
+            },
+            child: Icon(
+              Icons.language,
+              color: Colors.grey[400],
+              size: 25,
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: GestureDetector(
+              onTap: () {},
+              child: Image.asset(
+                'assets/images/csv3d.png',
+                width: 35,
+                height: 35,
+              ),
             ),
           )
         ],
@@ -166,18 +198,27 @@ class _InputMyKeywordState extends ConsumerState<InputMyKeyword> {
                         onPressed: () async {
                           //뎁스정하기(폴더)
 
-                          final String groupTitle = await inputTitleDialog(
-                                context,
-                              ) ??
-                              '';
+                          // final String groupTitle = await inputTitleDialog(
+                          //       context,
+                          //     ) ??
+                          //     '';
 
-                          if (context.mounted && groupTitle != '') {
-                            ref.read(groupListProvider.notifier).addCardList(
-                                  cardList: ref.watch(cardListProvider).value!,
-                                  title: groupTitle,
-                                );
-                            GoRouter.of(context).pop();
-                          }
+                          // if (context.mounted && groupTitle != '') {
+                          //   ref.read(groupListProvider.notifier).putCardList(
+                          //         cardList: ref.watch(cardListProvider).value!,
+                          //         title: groupTitle,
+                          //       );
+                          //   GoRouter.of(context).pop();
+                          // }
+
+                          final currentId = ref.watch(currentGroupIdProvider);
+                          log('완료하기 current id : $currentId');
+                          await ref
+                              .read(
+                                  GroupCardListProvider(id: currentId).notifier)
+                              .addCardList(
+                                  list: ref.watch(cardListProvider).value!);
+                          if (context.mounted) GoRouter.of(context).pop();
                         },
                         child: Text(
                           '완료하기',

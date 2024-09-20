@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:memorize/config/custom_colors.dart';
 import 'package:memorize/go_router/route_names.dart';
 import 'package:memorize/model/card_data_model.dart';
-import 'package:memorize/provider/group_list_id_provider.dart';
 import 'package:memorize/provider/group_list_provider.dart';
+import 'package:memorize/provider/simple_provider/current_group_id_provider.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class HistoryList extends ConsumerWidget {

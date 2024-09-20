@@ -69,6 +69,7 @@ class ChildGroup with _$ChildGroup {
       timeStamp: DateTime.now().millisecondsSinceEpoch,
     );
   }
+
 }
 
 @freezed

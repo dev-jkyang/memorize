@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'group_list_id_provider.g.dart';
+part 'current_group_id_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class CurrentGroupId extends _$CurrentGroupId {

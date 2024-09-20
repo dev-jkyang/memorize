@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_card_list_provider.dart';
+part of 'group_card_list_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getCardListHash() => r'94660868e7a476172bc70e35241195ba59cf6e7e';
+String _$groupCardListHash() => r'8cce4ceb295e751f1a4214a2388beea48fbb746a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$GetCardList
+abstract class _$GroupCardList
     extends BuildlessAutoDisposeAsyncNotifier<List<CardModel>> {
   late final String id;
 
@@ -38,27 +38,27 @@ abstract class _$GetCardList
   });
 }
 
-/// See also [GetCardList].
-@ProviderFor(GetCardList)
-const getCardListProvider = GetCardListFamily();
+/// See also [GroupCardList].
+@ProviderFor(GroupCardList)
+const groupCardListProvider = GroupCardListFamily();
 
-/// See also [GetCardList].
-class GetCardListFamily extends Family<AsyncValue<List<CardModel>>> {
-  /// See also [GetCardList].
-  const GetCardListFamily();
+/// See also [GroupCardList].
+class GroupCardListFamily extends Family<AsyncValue<List<CardModel>>> {
+  /// See also [GroupCardList].
+  const GroupCardListFamily();
 
-  /// See also [GetCardList].
-  GetCardListProvider call({
+  /// See also [GroupCardList].
+  GroupCardListProvider call({
     required String id,
   }) {
-    return GetCardListProvider(
+    return GroupCardListProvider(
       id: id,
     );
   }
 
   @override
-  GetCardListProvider getProviderOverride(
-    covariant GetCardListProvider provider,
+  GroupCardListProvider getProviderOverride(
+    covariant GroupCardListProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -77,30 +77,30 @@ class GetCardListFamily extends Family<AsyncValue<List<CardModel>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'getCardListProvider';
+  String? get name => r'groupCardListProvider';
 }
 
-/// See also [GetCardList].
-class GetCardListProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<GetCardList, List<CardModel>> {
-  /// See also [GetCardList].
-  GetCardListProvider({
+/// See also [GroupCardList].
+class GroupCardListProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    GroupCardList, List<CardModel>> {
+  /// See also [GroupCardList].
+  GroupCardListProvider({
     required String id,
   }) : this._internal(
-          () => GetCardList()..id = id,
-          from: getCardListProvider,
-          name: r'getCardListProvider',
+          () => GroupCardList()..id = id,
+          from: groupCardListProvider,
+          name: r'groupCardListProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$getCardListHash,
-          dependencies: GetCardListFamily._dependencies,
+                  : _$groupCardListHash,
+          dependencies: GroupCardListFamily._dependencies,
           allTransitiveDependencies:
-              GetCardListFamily._allTransitiveDependencies,
+              GroupCardListFamily._allTransitiveDependencies,
           id: id,
         );
 
-  GetCardListProvider._internal(
+  GroupCardListProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -114,7 +114,7 @@ class GetCardListProvider
 
   @override
   FutureOr<List<CardModel>> runNotifierBuild(
-    covariant GetCardList notifier,
+    covariant GroupCardList notifier,
   ) {
     return notifier.build(
       id: id,
@@ -122,10 +122,10 @@ class GetCardListProvider
   }
 
   @override
-  Override overrideWith(GetCardList Function() create) {
+  Override overrideWith(GroupCardList Function() create) {
     return ProviderOverride(
       origin: this,
-      override: GetCardListProvider._internal(
+      override: GroupCardListProvider._internal(
         () => create()..id = id,
         from: from,
         name: null,
@@ -138,14 +138,14 @@ class GetCardListProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<GetCardList, List<CardModel>>
+  AutoDisposeAsyncNotifierProviderElement<GroupCardList, List<CardModel>>
       createElement() {
-    return _GetCardListProviderElement(this);
+    return _GroupCardListProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetCardListProvider && other.id == id;
+    return other is GroupCardListProvider && other.id == id;
   }
 
   @override
@@ -157,18 +157,18 @@ class GetCardListProvider
   }
 }
 
-mixin GetCardListRef on AutoDisposeAsyncNotifierProviderRef<List<CardModel>> {
+mixin GroupCardListRef on AutoDisposeAsyncNotifierProviderRef<List<CardModel>> {
   /// The parameter `id` of this provider.
   String get id;
 }
 
-class _GetCardListProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<GetCardList,
-        List<CardModel>> with GetCardListRef {
-  _GetCardListProviderElement(super.provider);
+class _GroupCardListProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<GroupCardList,
+        List<CardModel>> with GroupCardListRef {
+  _GroupCardListProviderElement(super.provider);
 
   @override
-  String get id => (origin as GetCardListProvider).id;
+  String get id => (origin as GroupCardListProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:memorize/model/card_data_model.dart';
+import 'package:memorize/provider/simple_provider/hide_card_messege_provider.dart';
+import 'package:memorize/widgets/swipable_card/dropdown_menu.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CardWidget extends StatefulWidget {
@@ -9,10 +12,12 @@ class CardWidget extends StatefulWidget {
     super.key,
     required this.isLoading,
     required this.dataList,
+    required this.index,
   });
 
   final bool isLoading;
   final CardModel dataList;
+  final int index;
 
   @override
   State<CardWidget> createState() => _CardWidgetState();
@@ -54,13 +59,30 @@ class _CardWidgetState extends State<CardWidget> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  child: Stack(
                     children: [
-                      if (widget.isLoading) ...loadingCardList(),
-                      if (!widget.isLoading)
-                        ...testDataCardList(context, _message1ScrollController,
-                            _message2ScrollController, widget.dataList),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          if (widget.isLoading) ...loadingCardList(),
+                          if (!widget.isLoading)
+                            ...testDataCardList(
+                                context,
+                                _message1ScrollController,
+                                _message2ScrollController,
+                                widget.dataList,
+                                widget.index),
+                        ],
+                      ),
+                      const Positioned(
+                        top: -5,
+                        right: -5,
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: CustomDropdownMenu(),
+                        ),
+                      ),
                     ],
                   ),
                 )),
@@ -75,11 +97,15 @@ List<Widget> testDataCardList(
     BuildContext context,
     ScrollController controller1,
     ScrollController controller2,
-    CardModel dataList) {
+    CardModel dataList,
+    int index) {
   return [
-    const Text(
-      '1',
-      style: TextStyle(fontSize: 18, color: Colors.black),
+    SizedBox(
+      height: 20,
+      child: Text(
+        '$index',
+        style: const TextStyle(fontSize: 18, color: Colors.black),
+      ),
     ),
     Expanded(
       flex: 3,
@@ -111,13 +137,17 @@ List<Widget> testDataCardList(
             thickness: .7,
             child: SingleChildScrollView(
               controller: controller1,
-              child: Text(
-                dataList.message1,
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: Colors.black),
+              child: Consumer(
+                builder: (context, ref, child) {
+                  return Text(
+                    dataList.message1,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: ref.watch(hideCardMessegeProvider)
+                            ? Colors.transparent
+                            : Colors.black),
+                  );
+                },
               ),
             ),
           ),
@@ -136,13 +166,20 @@ List<Widget> testDataCardList(
                   thickness: .7,
                   child: SingleChildScrollView(
                     controller: controller2,
-                    child: Text(
-                      dataList.message2!,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: Colors.black),
+                    child: Consumer(
+                      builder: (context, ref, child) {
+                        return Text(
+                          dataList.message2!,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(
+                                  color: ref.watch(hideCardMessegeProvider)
+                                      ? Colors.transparent
+                                      : Colors.black),
+                        );
+                      },
                     ),
                   ),
                 ),

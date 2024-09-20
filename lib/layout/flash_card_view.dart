@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:memorize/config/custom_colors.dart';
+import 'package:memorize/go_router/route_names.dart';
+import 'package:memorize/provider/group_card_list_provider.dart';
+import 'package:memorize/provider/group_list_provider.dart';
+import 'package:memorize/provider/simple_provider/current_group_id_provider.dart';
 import 'package:memorize/widgets/swipable_card/swipable_stack.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -32,6 +38,37 @@ class _FlashCardViewState extends ConsumerState<FlashCardView> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              GoRouter.of(context).pushNamed(RouteNames.inputKeywordView);
+            },
+            child: const Icon(
+              Icons.add_rounded,
+              color: Colors.white,
+              size: 25,
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          GestureDetector(
+            onTap: () {
+              final currentId = ref.read(currentGroupIdProvider);
+              ref
+                  .read(GroupCardListProvider(id: currentId).notifier)
+                  .shuffleCardList();
+            },
+            child: const Padding(
+              padding: EdgeInsets.only(right: 25),
+              child: Icon(
+                Icons.cached_rounded,
+                color: Colors.white,
+                size: 25,
+              ),
+            ),
+          ),
+        ],
         title: Text(
           widget.title,
           style: Theme.of(context).textTheme.titleLarge,
@@ -42,7 +79,8 @@ class _FlashCardViewState extends ConsumerState<FlashCardView> {
       backgroundColor: primaryColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding:
+              const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 0),
           child: Column(
             children: [
               Align(
@@ -72,7 +110,7 @@ class _FlashCardViewState extends ConsumerState<FlashCardView> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 0,
               ),
               const Expanded(child: CustomSwipableStack()),
             ],

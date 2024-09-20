@@ -16,7 +16,7 @@ class GroupList extends _$GroupList {
   }
 
   //add, delete, update
-  Future<void> addCardList(
+  Future<void> putCardList(
       {required List<CardModel> cardList, required String title}) async {
     state = const AsyncLoading();
 
@@ -25,12 +25,13 @@ class GroupList extends _$GroupList {
 
     await ref
         .read(cardsRepositoryProvider)
-        .addCardList(childGroupData: newCardList);
+        .putCardList(childGroupData: newCardList);
 
     state = await AsyncValue.guard(() async {
       return [...state.value!, newCardList];
     });
   }
+
 }
 
 ///메인 히스토리 리스트 : 삭제, 위치이동
